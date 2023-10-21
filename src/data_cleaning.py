@@ -69,8 +69,6 @@ class DataDivideStrategy(Datastrategy):
             X = data.drop(["review_score"],axis=1)
             Y = data["review_score"]
             X_train,X_test,Y_train,Y_test = train_test_split(X, Y, test_size=0.2, random_state = 42)
-            log.error(X_train.shape)
-            log.error(Y_train.shape)
             return X_train,X_test,Y_train,Y_test
         
         except Exception as e:

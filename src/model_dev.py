@@ -46,8 +46,6 @@ class LinearRegressionModel(Model):
         """
         try:
             reg = LinearRegression(**kwargs)
-            print(X_train.shape)
-            print(Y_train.shape)
             reg.fit(X_train,Y_train)
             logging.info("Model Training Completed")
             return reg
