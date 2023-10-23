@@ -21,7 +21,7 @@ DEPLOY_AND_PREDICT = "deploy_and_predict"
     "pipeline to train and deploy the model ('deploy') or to"
     "only run a prediction against the deployed model"
     "('predict'). By default both will run"
-    "('deploy_and_predict')",
+    "('deploy_and_predict').",
 )
 
 
@@ -33,7 +33,7 @@ DEPLOY_AND_PREDICT = "deploy_and_predict"
 
 
 def run_deployment(config: str, min_accuracy: float):
-    mlflow_model_deployer_content = MLFlowDeploymentService.get_active_model_deployer
+    mlflow_model_deployer_content = MLFlowDeploymentService.get_active_model_deployer()
     deploy = config == DEPLOY or config == DEPLOY_AND_PREDICT
     predict = config == PREDICT or config == DEPLOY_AND_PREDICT
     
