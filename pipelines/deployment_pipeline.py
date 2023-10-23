@@ -2,7 +2,7 @@ import os
 import json
 import pandas as pd
 import numpy as np
-import pandas as pd
+
 
 # from materializer.custom_materializer import cs_materializer
 from steps.ingest_data import ingest_data
@@ -14,7 +14,7 @@ from steps.model_train import train_model
 from zenml import pipeline, step
 from zenml.config import DockerSettings
 from zenml.constants import DEFAULT_SERVICE_START_STOP_TIMEOUT
-from zenml.integrations.constants import MLFLOW, TENSORFLOW
+from zenml.integrations.constants import MLFLOW
 
 from zenml.integrations.mlflow.model_deployers.mlflow_model_deployer import (
     MLFlowModelDeployer,
@@ -52,7 +52,7 @@ def continuous_deployment_pipeline(
     workers: int = 1,
     timeout: int = DEFAULT_SERVICE_START_STOP_TIMEOUT):
 
-    df = ingest_data()
+    df = ingest_data(data_path = data_path)
     X_train,X_test,Y_test,Y_train, = clean_data(df)
     model = train_model(X_train,Y_train)
     r2_score,rmse = evaluate_model(model,X_test,Y_test)

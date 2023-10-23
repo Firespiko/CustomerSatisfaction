@@ -33,14 +33,15 @@ DEPLOY_AND_PREDICT = "deploy_and_predict"
 
 
 def run_deployment(config: str, min_accuracy: float):
-    mlflow_model_deployer_content = MLFlowDeploymentService.get_active_model_deployer()
+    mlflow_model_deployer_content = MLFlowModelDeployer.get_active_model_deployer()
     deploy = config == DEPLOY or config == DEPLOY_AND_PREDICT
     predict = config == PREDICT or config == DEPLOY_AND_PREDICT
     
     if deploy:
         continuous_deployment_pipeline(min_accuracy = min_accuracy,
         workers = 3,
-        timeout = 60)
+        timeout = 60,
+        data_path = "/mnt/d/pyproject/CUSTOMER SATISFACTION/data/olist_customers_dataset.csv")
 #    if predict:
 #        inference_pipeline()
         
